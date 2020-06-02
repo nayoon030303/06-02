@@ -31,15 +31,54 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 LPDIRECT3D9         g_pD3D = NULL; 
 LPDIRECT3DDEVICE9   g_pd3dDevice = NULL; 
 
+LPD3DXSPRITE g_sprite = nullptr;
+LPDIRECT3DTEXTURE9* g_spriteTexture = nullptr;
+
+void InitSprite()
+{
+    D3DXCreateSprite(g_pd3dDevice, &g_sprite);
+    g_spriteTexture = new LPDIRECT3DTEXTURE9();
+    D3DXCreateTextureFromFile(g_pd3dDevice, L"player1.png", g_spriteTexture);
+
+}
 
 void Render()
 {
     g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
         D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
 
+    if(SUCCEEDED(g_pd3dDevice->BeginScene()))
+    {
+        g_sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+        RECT srcrect;
+        srcrect.top = 0;
+        srcrect.left = 0;
+        srcrect.right = 31;
+        srcrect.bottom = 48;
+
+        D3DXVECTOR3 pos(0, 0, 0);
+        g_sprite->Draw(*g_spriteTexture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+
+        
+        g_sprite->End();
+        g_pd3dDevice->EndScene();
+    }
 
 
     g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void Update()
+{
+
+}
+
+void GameLoop()
+{
+    Render();
+    Update();
+
 }
 
 
@@ -109,7 +148,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
         else
-            Render();
+            GameLoop();
     }
 
     return (int) msg.wParam;
@@ -151,6 +190,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    }
 
    InitD3D(hWnd);
+   InitSprite();
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
