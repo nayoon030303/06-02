@@ -40,8 +40,8 @@ LPDIRECT3DDEVICE9 g_pd3dDevice = nullptr;
 TextureManager textureManager;
 InputManger inputManager;
  
-float spritex = 0;
-float spritey = 0;
+//float spritex = 0;
+//float spritey = 0;
 
 void InitMySuff()
 {
@@ -81,12 +81,21 @@ void Render()
 
 void Update()
 {
-    if (inputManager.keyBuffer[VK_LEFT] == 1)
+    /*if (inputManager.keyBuffer[VK_LEFT] == 1)
         spritex -= 1;
     if (inputManager.keyBuffer[VK_RIGHT] == 1)
         spritex += 1;
+    if (inputManager.keyBuffer[VK_UP] == 1)
+        spritey -= 1;
+    if (inputManager.keyBuffer[VK_DOWN] == 1)
+        spritey += 1;*/
    
-
+    //눌렀다 땠을때 
+    if (inputManager.prevKeyBuffer[VK_RIGHT] == 1 && inputManager.keyBuffer[VK_RIGHT] == 1)
+    {
+        spritex += 10;
+    }
+    inputManager.Update();
 }
 
 void GameLoop()
