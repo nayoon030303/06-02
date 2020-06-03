@@ -1,15 +1,21 @@
-﻿// Exam01.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
+﻿
 #include "framework.h"
 #include "Exam01.h"
+
+
+#include "global.h"
+#include "texture_manager.h"
+
 
 #include <Windows.h>
 #include <mmsystem.h>
 #include <d3dx9.h>
 #pragma warning( disable : 4996 ) // disable deprecated warning 
 #include <strsafe.h>
-#pragma warning( default : 4996 )
+#pragma warning( default : 4996 ) 
+
+
+
 
 #define MAX_LOADSTRING 100
 
@@ -27,18 +33,16 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+LPDIRECT3D9 g_pD3D = nullptr;
+LPDIRECT3DDEVICE9 g_pd3dDevice = nullptr;
 
-LPDIRECT3D9         g_pD3D = NULL; 
-LPDIRECT3DDEVICE9   g_pd3dDevice = NULL; 
-
-LPD3DXSPRITE g_sprite = nullptr;
-LPDIRECT3DTEXTURE9* g_spriteTexture = nullptr;
-
-void InitSprite()
+ 
+TextureManager textureManager;
+ 
+void InitMySuff()
 {
-    D3DXCreateSprite(g_pd3dDevice, &g_sprite);
-    g_spriteTexture = new LPDIRECT3DTEXTURE9();
-    D3DXCreateTextureFromFile(g_pd3dDevice, L"player1.png", g_spriteTexture);
+    textureManager.LoadTexture(L"player1.png", 1);
+
 
 }
 
@@ -49,7 +53,9 @@ void Render()
 
     if(SUCCEEDED(g_pd3dDevice->BeginScene()))
     {
-        g_sprite->Begin(D3DXSPRITE_ALPHABLEND);
+        TextureElement* element = textureManager.GetTexture(1);
+        
+        element->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
         RECT srcrect;
         srcrect.top = 0;
@@ -58,10 +64,10 @@ void Render()
         srcrect.bottom = 48;
 
         D3DXVECTOR3 pos(0, 0, 0);
-        g_sprite->Draw(*g_spriteTexture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+        element->sprite->Draw(element->texture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
-        
-        g_sprite->End();
+
+        element->sprite->End();
         g_pd3dDevice->EndScene();
     }
 
@@ -190,7 +196,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    }
 
    InitD3D(hWnd);
-   InitSprite();
+   InitMySuff();
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
