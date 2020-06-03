@@ -67,7 +67,7 @@ void Render()
         srcrect.right = 31;
         srcrect.bottom = 48;
 
-        D3DXVECTOR3 pos(spritex, spritey, 0);
+        D3DXVECTOR3 pos(0, 0, 0);
         element->sprite->Draw(element->texture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 
@@ -91,10 +91,10 @@ void Update()
         spritey += 1;*/
    
     //눌렀다 땠을때 
-    if (inputManager.prevKeyBuffer[VK_RIGHT] == 1 && inputManager.keyBuffer[VK_RIGHT] == 1)
+    /*if (inputManager.prevKeyBuffer[VK_RIGHT] == 1 && inputManager.keyBuffer[VK_RIGHT] == 1)
     {
         spritex += 10;
-    }
+    }*/
     inputManager.Update();
 }
 
