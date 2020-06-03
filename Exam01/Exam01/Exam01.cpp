@@ -36,9 +36,13 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 LPDIRECT3D9 g_pD3D = nullptr;
 LPDIRECT3DDEVICE9 g_pd3dDevice = nullptr;
 
- 
+ //all Manager
 TextureManager textureManager;
+InputManger inputManager;
  
+float spritex = 0;
+float spritey = 0;
+
 void InitMySuff()
 {
     textureManager.LoadTexture(L"player1.png", 1);
@@ -63,7 +67,7 @@ void Render()
         srcrect.right = 31;
         srcrect.bottom = 48;
 
-        D3DXVECTOR3 pos(0, 0, 0);
+        D3DXVECTOR3 pos(spritex, spritey, 0);
         element->sprite->Draw(element->texture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 
@@ -77,6 +81,11 @@ void Render()
 
 void Update()
 {
+    if (inputManager.keyBuffer[VK_LEFT] == 1)
+        spritex -= 1;
+    if (inputManager.keyBuffer[VK_RIGHT] == 1)
+        spritex += 1;
+   
 
 }
 
@@ -211,6 +220,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
    
     case WM_DESTROY:
         PostQuitMessage(0);
+        break;
+    case WM_KEYUP:
+        inputManager.keyBuffer[wParam] = 0;
+        break;
+    case WM_KEYDOWN:
+        inputManager.keyBuffer[wParam] = 1;
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
