@@ -19,8 +19,7 @@
 
 #define MAX_LOADSTRING 100
 
-#define WINDOW_WITH 640
-#define WINDOW_HEIGHT 480
+
 
 
 // 전역 변수:
@@ -39,7 +38,8 @@ LPDIRECT3DDEVICE9 g_pd3dDevice = nullptr;
  //all Manager
 TextureManager textureManager;
 InputManger inputManager;
- 
+StageManager stageManager;
+
 //float spritex = 0;
 //float spritey = 0;
 
@@ -47,7 +47,7 @@ void InitMySuff()
 {
     textureManager.LoadTexture(L"player1.png", 1);
 
-
+    stageManager.MakeTitleScreen();
 }
 
 void Render()
@@ -57,7 +57,7 @@ void Render()
 
     if(SUCCEEDED(g_pd3dDevice->BeginScene()))
     {
-        TextureElement* element = textureManager.GetTexture(1);
+      /*  TextureElement* element = textureManager.GetTexture(1);
         
         element->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
@@ -71,7 +71,8 @@ void Render()
         element->sprite->Draw(element->texture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 
-        element->sprite->End();
+        element->sprite->End();*/
+        stageManager.Render();
         g_pd3dDevice->EndScene();
     }
 
@@ -95,6 +96,7 @@ void Update()
     {
         spritex += 10;
     }*/
+    stageManager.Update(); 
     inputManager.Update();
 }
 
