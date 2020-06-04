@@ -6,7 +6,7 @@ class StageManager
 public:
 	Stage* currentStage;
 
-	void MakeTitleScreen();
+	void MakeTitleStage();
 	void Render();
 	void Update();
 };
