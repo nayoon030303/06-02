@@ -45,8 +45,8 @@ StageManager stageManager;
 
 void InitMySuff()
 {
-    textureManager.LoadTexture(L"player1.png", 1);
-
+    textureManager.LoadTexture(L"player1.png", PLAYER_PNG);
+    textureManager.LoadTexture(L"titleStage.png", TITLE_PNG);
     stageManager.MakeTitleStage();
 }
 

@@ -11,6 +11,9 @@
 #define WINDOW_HEIGHT 480
 
 
+#define PLAYER_PNG 100
+#define TITLE_PNG 200
+
 extern  LPDIRECT3D9        g_pD3D ;
 extern LPDIRECT3DDEVICE9   g_pd3dDevice ;
 

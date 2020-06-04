@@ -1,7 +1,4 @@
 ﻿  Exam01.cpp
-  stage_manager.cpp
-  texture_manager.cpp
-C:\Users\qwer1\Downloads\미림 기능대회\study\06-02\Exam01\Exam01\texture_manager.cpp(20,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   title_stage.cpp
   코드를 생성하고 있습니다...
   Exam01.vcxproj -> C:\Users\qwer1\Downloads\미림 기능대회\study\06-02\Exam01\Debug\Exam01.exe
