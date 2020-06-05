@@ -7,6 +7,7 @@ public:
 	Stage* currentStage;
 
 	void MakeTitleStage();
+	void MakeFirstStage();
 	void Render();
 	void Update();
 };

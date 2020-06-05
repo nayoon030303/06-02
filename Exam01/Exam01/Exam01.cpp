@@ -47,6 +47,7 @@ void InitMySuff()
 {
     textureManager.LoadTexture(L"player1.png", PLAYER_PNG);
     textureManager.LoadTexture(L"titleStage.png", TITLE_PNG);
+    textureManager.LoadTexture(L"background.png", BACKGROUND);
     stageManager.MakeTitleStage();
 }
 
@@ -57,21 +58,7 @@ void Render()
 
     if(SUCCEEDED(g_pd3dDevice->BeginScene()))
     {
-      /*  TextureElement* element = textureManager.GetTexture(1);
         
-        element->sprite->Begin(D3DXSPRITE_ALPHABLEND);
-
-        RECT srcrect;
-        srcrect.top = 0;
-        srcrect.left = 0;
-        srcrect.right = 31;
-        srcrect.bottom = 48;
-
-        D3DXVECTOR3 pos(0, 0, 0);
-        element->sprite->Draw(element->texture, &srcrect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
-
-
-        element->sprite->End();*/
         stageManager.Render();
         g_pd3dDevice->EndScene();
     }
@@ -102,8 +89,9 @@ void Update()
 
 void GameLoop()
 {
-    Render();
     Update();
+    Render();
+   
 
 }
 
@@ -237,6 +225,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_KEYDOWN:
         inputManager.keyBuffer[wParam] = 1;
+        break;
+    case WM_LBUTTONUP:
+        inputManager.keyBuffer[VK_LBUTTON] = 0;
+        break;
+    case WM_LBUTTONDOWN:
+        inputManager.keyBuffer[VK_LBUTTON] = 1;
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

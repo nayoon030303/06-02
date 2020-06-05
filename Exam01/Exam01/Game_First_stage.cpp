@@ -1,0 +1,30 @@
+#include "Game_First_Stage.h"
+#include "global.h"
+
+GameFirstStage::GameFirstStage()
+{
+
+}
+
+void GameFirstStage::Update()
+{
+	firstStageY += 0.5f;
+}
+
+void GameFirstStage::Render()
+{
+	TextureElement* elements = textureManager.GetTexture(BACKGROUND);
+	elements->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+	RECT srcRect;
+	srcRect.left = 0;
+	srcRect.top = 0;
+	srcRect.right = 640;
+	srcRect.bottom = 480;
+
+	D3DXVECTOR3 pos(0, firstStageY, 0);
+	elements->sprite->Draw(elements->texture,&srcRect,nullptr,&pos,D3DCOLOR_XRGB(255,255,255));
+	
+	elements->sprite->End();
+
+}
