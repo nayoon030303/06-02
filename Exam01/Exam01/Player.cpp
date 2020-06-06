@@ -3,7 +3,9 @@
 
 Player::Player()
 {
-
+	playerX = WINDOW_WITH / 2;
+	playerY = WINDOW_HEIGHT * 0.8;
+	speed = 5;
 }
 
 void Player::Render()
@@ -17,7 +19,7 @@ void Player::Render()
 	srcRect.right = 30;
 	srcRect.bottom = 46;
 
-	D3DXVECTOR3 pos (WINDOW_WITH/2, WINDOW_HEIGHT*0.8, 0);
+	D3DXVECTOR3 pos (playerX,playerY, 0);
 	D3DXVECTOR3 center(30 / 2, 46.2,0);
 	element->sprite->Draw(element->texture, &srcRect, &center, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
@@ -26,5 +28,20 @@ void Player::Render()
 }
 void Player::Update()
 {
-
+	if (inputManager.keyBuffer[VK_LEFT] == 1)
+	{
+		playerX -= speed;
+	}
+	if (inputManager.keyBuffer[VK_RIGHT] == 1)
+	{
+		playerX += speed;
+	}
+	if (inputManager.keyBuffer[VK_UP] == 1)
+	{
+		playerY -= speed;
+	}
+	if (inputManager.keyBuffer[VK_DOWN] == 1)
+	{
+		playerY += speed;
+	}
 }

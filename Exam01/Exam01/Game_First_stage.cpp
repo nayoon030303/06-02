@@ -9,8 +9,9 @@ GameFirstStage::GameFirstStage()
 void GameFirstStage::Update()
 {
 	firstStageY +=1;
-
 	firstStageY = (int)firstStageY % WINDOW_HEIGHT;
+
+	player.Update();
 }
 
 void GameFirstStage::Render()

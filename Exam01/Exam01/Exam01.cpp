@@ -51,7 +51,7 @@ void InitMySuff()
     stageManager.MakeTitleStage();
 }
 
-void Render()
+void EngineRender()
 {
     g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
         D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
@@ -67,32 +67,17 @@ void Render()
     g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
 }
 
-void Update()
+void EngineUpdate()
 {
-    /*if (inputManager.keyBuffer[VK_LEFT] == 1)
-        spritex -= 1;
-    if (inputManager.keyBuffer[VK_RIGHT] == 1)
-        spritex += 1;
-    if (inputManager.keyBuffer[VK_UP] == 1)
-        spritey -= 1;
-    if (inputManager.keyBuffer[VK_DOWN] == 1)
-        spritey += 1;*/
-   
-    //눌렀다 땠을때 
-    /*if (inputManager.prevKeyBuffer[VK_RIGHT] == 1 && inputManager.keyBuffer[VK_RIGHT] == 1)
-    {
-        spritex += 10;
-    }*/
     stageManager.Update(); 
     inputManager.Update();
 }
 
 void GameLoop()
 {
-    Update();
-    Render();
+    EngineRender();
+    EngineRender();
    
-
 }
 
 
