@@ -8,7 +8,9 @@ GameFirstStage::GameFirstStage()
 
 void GameFirstStage::Update()
 {
-	firstStageY += 0.5f;
+	firstStageY +=1;
+
+	firstStageY = (int)firstStageY % WINDOW_HEIGHT;
 }
 
 void GameFirstStage::Render()
@@ -21,9 +23,12 @@ void GameFirstStage::Render()
 	srcRect.top = 0;
 	srcRect.right = 640;
 	srcRect.bottom = 480;
-
+	
 	D3DXVECTOR3 pos(0, firstStageY, 0);
 	elements->sprite->Draw(elements->texture,&srcRect,nullptr,&pos,D3DCOLOR_XRGB(255,255,255));
+
+	pos = D3DXVECTOR3(0, firstStageY - WINDOW_HEIGHT, 0);
+	elements->sprite->Draw(elements->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 	
 	elements->sprite->End();
 

@@ -8,5 +8,5 @@ public:
 	void Update() override;
 	void Render() override;
 
-	float firstStageY = 0;
+	int firstStageY = 0;
 };
