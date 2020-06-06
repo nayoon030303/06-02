@@ -43,6 +43,8 @@ void InitMySuff()
     textureManager.LoadTexture(L"player1.png", PLAYER_PNG);
     textureManager.LoadTexture(L"titleStage.png", TITLE_PNG);
     textureManager.LoadTexture(L"background.png", BACKGROUND1_PNG);
+    textureManager.LoadTexture(L"player_bullet_1.png", PlayerBullet_PNG);
+
     stageManager.MakeTitleStage();
 
     prevTime = GetTickCount();

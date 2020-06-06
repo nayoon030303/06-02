@@ -15,6 +15,7 @@
 #define TITLE_PNG 200
 #define BACKGROUND1_PNG 300
 #define Player_PNG 400
+#define PlayerBullet_PNG 500
 
 extern  LPDIRECT3D9        g_pD3D ;
 extern LPDIRECT3DDEVICE9   g_pd3dDevice ;

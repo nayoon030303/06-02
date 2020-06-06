@@ -1,6 +1,6 @@
 #include "player.h"
 #include "global.h"
-
+#include "player_bullet.h"
 
 Player::Player()
 {
@@ -44,5 +44,9 @@ void Player::Update()
 	if (inputManager.keyBuffer[VK_DOWN] == 1)
 	{
 		playerY += speed * deltaTime;
+	}
+	if (inputManager.prevKeyBuffer['Z'] == 1 && inputManager.keyBuffer['Z'] == 0)
+	{
+		
 	}
 }
