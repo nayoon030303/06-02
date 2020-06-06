@@ -1,11 +1,12 @@
 #include "player.h"
 #include "global.h"
 
+
 Player::Player()
 {
 	playerX = WINDOW_WITH / 2;
 	playerY = WINDOW_HEIGHT * 0.8;
-	speed = 5;
+	speed = 300;
 }
 
 void Player::Render()
@@ -30,18 +31,18 @@ void Player::Update()
 {
 	if (inputManager.keyBuffer[VK_LEFT] == 1)
 	{
-		playerX -= speed;
+		playerX -= speed * deltaTime;
 	}
 	if (inputManager.keyBuffer[VK_RIGHT] == 1)
 	{
-		playerX += speed;
+		playerX += speed * deltaTime;
 	}
 	if (inputManager.keyBuffer[VK_UP] == 1)
 	{
-		playerY -= speed;
+		playerY -= speed * deltaTime;
 	}
 	if (inputManager.keyBuffer[VK_DOWN] == 1)
 	{
-		playerY += speed;
+		playerY += speed * deltaTime;
 	}
 }

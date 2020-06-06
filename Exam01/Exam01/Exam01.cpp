@@ -15,12 +15,7 @@
 #pragma warning( default : 4996 ) 
 
 
-
-
 #define MAX_LOADSTRING 100
-
-
-
 
 // 전역 변수:
 HINSTANCE hInst;                                
@@ -40,8 +35,8 @@ TextureManager textureManager;
 InputManger inputManager;
 StageManager stageManager;
 
-//float spritex = 0;
-//float spritey = 0;
+DWORD prevTime = 0;
+float deltaTime = 0;
 
 void InitMySuff()
 {
@@ -49,6 +44,8 @@ void InitMySuff()
     textureManager.LoadTexture(L"titleStage.png", TITLE_PNG);
     textureManager.LoadTexture(L"background.png", BACKGROUND1_PNG);
     stageManager.MakeTitleStage();
+
+    prevTime = GetTickCount();
 }
 
 void EngineRender()
@@ -69,13 +66,24 @@ void EngineRender()
 
 void EngineUpdate()
 {
+    DWORD cur = GetTickCount();
+    DWORD diff = cur - prevTime;
+    deltaTime = diff / (1000.0f);
+
+    if (deltaTime > 0.016)
+    {
+        deltaTime = 0.016f;
+    }
+
+    prevTime = cur;
+
     stageManager.Update(); 
     inputManager.Update();
 }
 
 void GameLoop()
 {
-    EngineRender();
+    EngineUpdate();
     EngineRender();
    
 }
