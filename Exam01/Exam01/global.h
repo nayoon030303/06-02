@@ -13,7 +13,8 @@
 
 #define PLAYER_PNG 100
 #define TITLE_PNG 200
-#define BACKGROUND 300
+#define BACKGROUND1_PNG 300
+#define Player_PNG 400
 
 extern  LPDIRECT3D9        g_pD3D ;
 extern LPDIRECT3DDEVICE9   g_pd3dDevice ;

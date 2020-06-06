@@ -15,7 +15,7 @@ void GameFirstStage::Update()
 
 void GameFirstStage::Render()
 {
-	TextureElement* elements = textureManager.GetTexture(BACKGROUND);
+	TextureElement* elements = textureManager.GetTexture(BACKGROUND1_PNG);
 	elements->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 	RECT srcRect;
@@ -32,4 +32,5 @@ void GameFirstStage::Render()
 	
 	elements->sprite->End();
 
+	player.Render();
 }

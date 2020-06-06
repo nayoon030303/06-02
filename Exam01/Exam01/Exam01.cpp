@@ -47,7 +47,7 @@ void InitMySuff()
 {
     textureManager.LoadTexture(L"player1.png", PLAYER_PNG);
     textureManager.LoadTexture(L"titleStage.png", TITLE_PNG);
-    textureManager.LoadTexture(L"background.png", BACKGROUND);
+    textureManager.LoadTexture(L"background.png", BACKGROUND1_PNG);
     stageManager.MakeTitleStage();
 }
 

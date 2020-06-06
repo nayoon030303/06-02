@@ -33,5 +33,6 @@ void TitleStage::Update()
     if (inputManager.prevKeyBuffer[VK_LBUTTON] == 1 && inputManager.keyBuffer[VK_LBUTTON] == 0)
     {
         stageManager.MakeFirstStage();
+        
     }
 }
